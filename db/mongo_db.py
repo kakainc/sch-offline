@@ -25,7 +25,7 @@ def get_hot_post():
 
 if __name__ == "__main__":
     post_mg = get_col_post()
-    postdoc = {"_id": 2, "ptype": 2, "tid": 3, "content": "mongo_test", "tname": "three",
+    postdoc = {"_id": 1, "ptype": 2, "tid": 3, "content": "mongo_test", "tname": "three",
                "top100_reviews": [{"rev1": "test1", "rev2": "test2"}]}
 
     # obj = post_mg.insert_one(postdoc)

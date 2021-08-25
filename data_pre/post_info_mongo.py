@@ -10,6 +10,8 @@ def cut_content(data_file):
     with open(data_file, 'r') as file_handler:
         for line in file_handler.readlines():
             info = line.strip().split('\x01')
+            if len(info) < 6:
+                continue
             pid = info[0]
             ptype = info[1]
             tid = info[2]

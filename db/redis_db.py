@@ -29,22 +29,11 @@ if __name__ == "__main__":
     # index_redis = get_index_redis()
     index_redis = get_features_redis()
 
-    prefix = 'test'
-    info = 'redis'
-    value = ['353', '245', '2325']
-    # key = prefix + info
-    # index_redis.setex(key, 1 * 86400, value[0])
-    # index_redis.hset(prefix, info, value[0])
-    # index_redis.expire(prefix, 1 * 86400)
-
     # key = '内容_' + 'p图'
     # key = '评论_' + 'p图'
-    key = '话题_' + '浙江'
+    # key = '话题_' + '浙江'
     # key = "new_review"
     # name = "new_ctr"
-    # index_redis.zadd(key, {prefix: 100})
-    # index_redis.zadd(key, {info: 101})
-    # index_redis.expire(key, 1 * 86400)
 
-    print(index_redis.zrange(key, 0, 5, withscores=True))
+    # print(index_redis.zrange(key, 0, 5, withscores=True))
     # print index_redis.hget(name, "100643854")

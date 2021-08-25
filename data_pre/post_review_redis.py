@@ -9,6 +9,8 @@ def cut_content(data_file):
     with open(data_file, 'r') as file_handler:
         for line in file_handler.readlines():
             info = line.strip().split('\x01')
+            if len(info) < 6:
+                continue
             pid = info[0]
             top100_reviews = info[5]
 
