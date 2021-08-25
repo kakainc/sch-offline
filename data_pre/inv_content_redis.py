@@ -5,9 +5,6 @@ import jieba           # jieba.load_userdict(phase_file)
 import jieba.analyse as analyse
 from db import redis_db
 import pandas as pd
-import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
 
 def cut_content(data_file, phase_file, stpwd_file):
@@ -22,8 +19,10 @@ def cut_content(data_file, phase_file, stpwd_file):
         jieba.add_word(temp.lower(), tag='ng')
     print("segment loading done!!!")
     with open(data_file, 'r') as file_handler:
-        for line in file_handler:
+        for line in file_handler.readlines():
             info = line.strip().split('\x01')
+            if len(info) < 6:
+                continue
             pid = info[0]
             content = info[3]
             content = content.lower()

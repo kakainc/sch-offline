@@ -5,9 +5,6 @@ import jieba
 import jieba.analyse as analyse
 from db import redis_db
 import pandas as pd
-import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
 
 def cut_comment(data_file, phase_file, stpwd_file):
@@ -15,15 +12,16 @@ def cut_comment(data_file, phase_file, stpwd_file):
     index_redis = redis_db.get_features_redis()
     anys = analyse
     anys.set_stop_words(stpwd_file)
-    # phase = pd.read_table(phase_file, header=None)
     phase = pd.read_csv(phase_file, sep='\t', header=None)
     for i in phase.index.tolist():
         temp = phase.loc[i, 0]
         jieba.add_word(temp.lower(), tag='ng')
     print("segment loading done!!!")
     with open(data_file, 'r') as file_handler:
-        for line in file_handler:
+        for line in file_handler.readlines():
             info = line.strip().split('\x01')
+            if len(info) < 6:
+                continue
             pid = info[0]
             comments = info[5]
             if not comments:
